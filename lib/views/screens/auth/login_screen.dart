@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:tiktok_clone/constants.dart';
-
+import 'package:tiktok_clone/views/widgets/text_input_field.dart';
 
 class LoginScreen extends StatelessWidget {
-  const LoginScreen({super.key});
+  LoginScreen({super.key});
+  final TextEditingController _emailController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -22,13 +23,19 @@ class LoginScreen extends StatelessWidget {
             ),
             const Text(
               "Login",
-              style: TextStyle(
-                fontSize: 25,
-                fontWeight: FontWeight.w700
-              ),
+              style: TextStyle(fontSize: 25, fontWeight: FontWeight.w700),
             ),
             const SizedBox(height: 25),
-
+            Container(
+              width: MediaQuery.of(context).size.width,
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: TextInputField(
+                controller: _emailController,
+                icon: Icons.email,
+                isObscure: false,
+                labelText: "Email",
+              ),
+            )
           ],
         ),
       ),
