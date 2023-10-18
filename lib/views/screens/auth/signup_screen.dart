@@ -3,10 +3,18 @@ import 'package:tiktok_clone/views/widgets/text_input_field.dart';
 
 import '../../../constants.dart';
 
-class SignupScreen extends StatelessWidget {
+class SignupScreen extends StatefulWidget {
   SignupScreen({super.key});
+
+  @override
+  State<SignupScreen> createState() => _SignupScreenState();
+}
+
+class _SignupScreenState extends State<SignupScreen> {
   final TextEditingController _emailController = TextEditingController();
+
   final TextEditingController _passwordController = TextEditingController();
+
   final TextEditingController _usernameController = TextEditingController();
 
   @override
@@ -33,18 +41,28 @@ class SignupScreen extends StatelessWidget {
               const SizedBox(height: 25),
               Stack(
                 children: [
-                  const CircleAvatar(
-                    radius: 64,
-                    backgroundImage: NetworkImage(
-                        'https://as1.ftcdn.net/v2/jpg/03/53/11/00/1000_F_353110097_nbpmfn9iHlxef4EDIhXB1tdTD0lcWhG9.jpg'),
-                    backgroundColor: Colors.black,
-                  ),
+                  authController.ProfileImage == null
+                      ? const CircleAvatar(
+                          radius: 64,
+                          backgroundImage: NetworkImage(
+                            'https://as1.ftcdn.net/v2/jpg/03/53/11/00/1000_F_353110097_nbpmfn9iHlxef4EDIhXB1tdTD0lcWhG9.jpg',
+                          ),
+                          backgroundColor: Colors.black,
+                        )
+                      : CircleAvatar(
+                          radius: 64,
+                          backgroundImage:
+                              FileImage(authController.ProfileImage!),
+                        ),
                   Positioned(
                     bottom: -10,
                     left: 80,
                     child: IconButton(
                       icon: const Icon(Icons.add_a_photo),
-                      onPressed: () {},
+                      onPressed: () async {
+                        await authController.pickImage();
+                        setState(() {});
+                      },
                     ),
                   )
                 ],
@@ -97,7 +115,7 @@ class SignupScreen extends StatelessWidget {
                     _usernameController.text,
                     _emailController.text,
                     _passwordController.text,
-                    null,
+                    authController.ProfileImage,
                   ),
                   child: const Center(
                     child: Text(

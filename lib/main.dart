@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tiktok_clone/constants.dart';
 import 'package:tiktok_clone/controller/auth_controller.dart';
-import 'package:tiktok_clone/views/screens/auth/signup_screen.dart';
+import 'package:tiktok_clone/views/screens/auth/login_screen.dart';
 import "package:tiktok_clone/firebase_options.dart";
 
 void main() async {
@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
         scaffoldBackgroundColor: backgroundColor,
       ),
-      home: SignupScreen(),
+      home: LoginScreen(),
     );
   }
 }
